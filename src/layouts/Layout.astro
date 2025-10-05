@@ -27,19 +27,22 @@ const currentPath = Astro.url.pathname;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- SEO -->
     <title>{title}</title>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta name="theme-color" content="#F5E6D3" />
-    
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
     <link rel="manifest" href="/img/favicons/site.webmanifest" />
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <div class={`relative min-h-screen bg-${bgColor}`}>
@@ -49,7 +52,17 @@ const currentPath = Astro.url.pathname;
       </main>
       <Footer />
     </div>
-	<script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
 
