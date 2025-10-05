@@ -1,0 +1,83 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  bgColor?: 'yellow' | 'green';
+}
+
+const { 
+  title, 
+  description = 'Cozy powstało by przenieść Twoje ulubione barowe doświadczenia w miejsce najważniejszych wydarzeń Twojego życia',
+  image = '/img/hero_main.png',
+  bgColor = 'yellow'
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta name="theme-color" content="#F5E6D3" />
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/img/favicons/site.webmanifest" />
+  </head>
+  <body>
+    <div class={`relative min-h-screen bg-${bgColor}`}>
+      <Navbar currentPath={currentPath} />
+      <main class="wrapper pt-0 1070:pt-hero">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+	<script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .container-lg {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .wrapper {
+    min-height: calc(100vh - 200px);
+  }
+</style>

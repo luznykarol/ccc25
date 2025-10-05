@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/img"
+public_folder: "/img"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/home.md"
+        label: "Home"
+        name: "home"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Hero Background", name: "herobackground", widget: "image" }
+          - { label: "Hero Signature", name: "herobackgroundsignature", widget: "text" }
+          - { label: "About Left", name: "aboutleft", widget: "markdown" }
+          - { label: "About Right", name: "aboutright", widget: "markdown" }
+          - { label: "About Helper", name: "abouthelper", widget: "string" }
+          - { label: "About Bar", name: "aboutbar", widget: "markdown" }
+          - { label: "Collage 1", name: "collage1", widget: "image" }
+          - { label: "Collage 2", name: "collage2", widget: "image" }
+          - { label: "Collage 3", name: "collage3", widget: "image" }
+          - { label: "Collage 4", name: "collage4", widget: "image" }
+          - { label: "Projects Helper", name: "projectshelper", widget: "string" }
+          - { label: "Projects Bar", name: "projectsbar", widget: "markdown" }
+          - { label: "Projects Bar Mobile", name: "projectsbarmobile", widget: "markdown" }
+          - { label: "Projects Text", name: "projectstext", widget: "text" }
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+
+      - file: "src/pages/about.astro"
+        label: "About"
+        name: "about"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Hero Background", name: "herobackground", widget: "image" }
+          - { label: "Weddings", name: "weddings", widget: "markdown" }
+          - { label: "Scenarios", name: "scenarios", widget: "markdown" }
+          - { label: "Events Image", name: "eventsimg", widget: "image" }
+          - { label: "Events", name: "events", widget: "markdown" }
+          - { label: "Workshops", name: "workshops", widget: "markdown" }
+          - { label: "Workshops Right", name: "workshopsright", widget: "markdown" }
+          - { label: "Consultancy", name: "consultancy", widget: "markdown" }
+          - { label: "Consultancy Right", name: "consultancyright", widget: "markdown" }
+          - { label: "Consultancy Image", name: "consultancyimg", widget: "image" }
+          - { label: "Consultancy Bar", name: "consultancybar", widget: "markdown" }
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - file: "src/content/settings/footer.md"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - { label: "Template", name: "template", widget: "hidden", default: "footer" }
+          - { label: "Type", name: "type", widget: "hidden", default: "footer" }
+          - { label: "Heading", name: "heading", widget: "text" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Email", name: "mail", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Socials", name: "socials", widget: "markdown" }

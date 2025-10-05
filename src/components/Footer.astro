@@ -1,0 +1,107 @@
+---
+import ContactForm from './ContactForm.astro';
+import ArrowRight from '../assets/icons/arrowRight.svg';
+
+// Load footer data from markdown file
+const footerData = {
+  heading: "Aby było ci wygodniej, zacznij konwersację z nami od prostego formularza, po którym bezwłocznie się z Tobą skontaktujemy w sprawie ustalenia dalszczych szczegółów",
+  contact: {
+    text: "Kontakt",
+    mail: "hi@cozycollective.pl",
+    phone: "+48 881 443 082"
+  },
+  socials: [
+    { name: "Instagram", url: "https://www.instagram.com/cozycocktailcollective/" },
+    { name: "Facebook", url: "https://www.facebook.com/cozycocktailcollective" }
+  ]
+};
+---
+
+<footer class="footer py-20 w-full bg-red" id="contact">
+  <div class="container">
+    <div class="flex flex-col lg:flex-row lg:justify-between gap-12">
+      <div class="footer__info lg:w-1/2">
+
+        <ArrowRight class="footer-arrow mb-8 w-20 h-20"  alt="Arrow"/>
+        <h2 class="text-yellow text-left text-2xl lg:text-3xl font-cozy mb-10">
+          {footerData.heading}
+        </h2>
+        
+        <div class="text-yellow mt-10 hidden lg:block">
+          <p class="font-bold mb-2">{footerData.contact.text}</p>
+          <a 
+            href={`mailto:${footerData.contact.mail}`}
+            class="block hover:opacity-70 transition-opacity mb-1"
+          >
+            {footerData.contact.mail}
+          </a>
+          <a 
+            href={`tel:${footerData.contact.phone}`}
+            class="block hover:opacity-70 transition-opacity"
+          >
+            {footerData.contact.phone}
+          </a>
+        </div>
+
+        <div class="text-yellow hidden lg:flex gap-4 mt-5">
+          {footerData.socials.map(social => (
+            <a 
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:opacity-70 transition-opacity"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer__form lg:w-1/2">
+        <ContactForm />
+      </div>
+
+      <div class="text-yellow mt-10 block lg:hidden">
+        <p class="font-bold mb-2">{footerData.contact.text}</p>
+        <a 
+          href={`mailto:${footerData.contact.mail}`}
+          class="block mb-1"
+        >
+          {footerData.contact.mail}
+        </a>
+        <a 
+          href={`tel:${footerData.contact.phone}`}
+          class="block"
+        >
+          {footerData.contact.phone}
+        </a>
+      </div>
+
+      <div class="text-yellow flex gap-4 mt-5 lg:hidden">
+        {footerData.socials.map(social => (
+          <a 
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {social.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+  }
+
+  .footer__info {
+    max-width: 100%;
+  }
+
+  .footer-arrow {
+    filter: brightness(0) invert(1);
+  }
+</style>

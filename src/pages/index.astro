@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/hero_main.png';
+
+const pageData = {
+  title: 'Cozy Cocktail Collective',
+  herobackground: '/img/hero_main.png',
+  herobackgroundsignature: 'Kasia Czalej\nKaj Gara\nAdam Flasiński',
+  aboutleft: 'Jedną nogą stoimy w Warszawie, drugą w Mediolanie, a nasze usługi dostarczamy tam, gdzie jesteś Ty i Twoje potrzeby. Mówimy po polsku, angielsku, włosku i francusku. Jesteśmy trójką przyjaciół, kochamy to co robimy i poświęcając się temu chcemy zmieniać Wasz świat na lepszy i smaczniejszy.',
+  aboutright: 'Cozy to wygoda, przyjemność i beztroska. To wiadomość, którą zawieramy w naszych działaniach. Cozy powstało by przenieść Twoje ulubione barowe doświadczenia w miejsce najważniejszych wydarzeń Twojego życia. Święcić, czcić, obchodzić, fetować, oblewać, opijać, bawić się. To synonimy celebracji, czyli my - Cozy Cocktail Collective',
+  abouthelper: 'Co Robimy',
+  aboutbar: ['Warsztaty i Szkolenia', 'Integracja Online', 'Wesela i Eventy', 'Doradztwo Barowe'],
+  collage1: '/img/dsc09999.jpg',
+  collage2: '/img/dsc00328.jpg',
+  collage3: '/img/dsc00912.jpg',
+  collage4: '/img/dsc09853.jpg',
+  projectshelper: 'Nasze przykładowe realizacje',
+  projectsbar: ['fotograf / filmowiec / weddingplanner', '/ make up / grafik / pokaz flair', '/ chef kuchni / kelnerzy'],
+  projectsbarmobile: ['Fotograf', 'filmowiec', 'weddingplanner', 'make up', 'pokaz flair', 'chef kuchni', 'kelnerzy'],
+  projectstext: 'Częścią Cozy są też nasi przyjaciele zajmujący się usługami, które mogą wzbogacić Twoją imprezę, akcję promocyjną, czy tworzenie konceptu. Działając razem nasz potencjał się mnoży, tak jak efekty naszej współpracy'
+};
+---
+
+<Layout title={pageData.title} bgColor="yellow">
+  <!-- Hero Section -->
+  <section class="hero relative h-screen flex items-center justify-center overflow-hidden">
+	<Image
+	src={heroImage}
+	alt="Hero background"
+      class="absolute inset-0 w-full h-full object-cover"
+	/>
+	
+    <img 
+      src={pageData.herobackground} 
+      alt="Hero background"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="relative z-10 text-center text-white">
+      <h1 class="text-5xl lg:text-7xl font-cozy mb-4">{pageData.title}</h1>
+      <div class="text-lg whitespace-pre-line opacity-80">
+        {pageData.herobackgroundsignature}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about py-20 bg-yellow">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="prose prose-lg">
+          <p class="text-green">{pageData.aboutleft}</p>
+        </div>
+        <div class="prose prose-lg">
+          <p class="text-green">{pageData.aboutright}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do Section -->
+  <section class="what-we-do py-20 bg-green">
+    <div class="container">
+      <h2 class="text-yellow text-4xl lg:text-5xl font-cozy mb-12 text-center">
+        {pageData.abouthelper}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {pageData.aboutbar.map((item) => (
+          <div class="text-center">
+            <h3 class="text-yellow text-2xl font-cozy">{item}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Collage Section -->
+  <section class="collage py-20 bg-yellow">
+    <div class="container">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <img src={pageData.collage1} alt="Realizacja 1" class="w-full h-64 object-cover rounded-lg" />
+        <img src={pageData.collage2} alt="Realizacja 2" class="w-full h-64 object-cover rounded-lg" />
+        <img src={pageData.collage3} alt="Realizacja 3" class="w-full h-64 object-cover rounded-lg" />
+        <img src={pageData.collage4} alt="Realizacja 4" class="w-full h-64 object-cover rounded-lg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects py-20 bg-red">
+    <div class="container">
+      <h2 class="text-yellow text-4xl lg:text-5xl font-cozy mb-12 text-center">
+        {pageData.projectshelper}
+      </h2>
+      
+      <div class="hidden lg:block mb-12">
+        {pageData.projectsbar.map((line) => (
+          <p class="text-yellow text-3xl font-cozy text-center">{line}</p>
+        ))}
+      </div>
+      
+      <div class="block lg:hidden mb-12">
+        {pageData.projectsbarmobile.map((item) => (
+          <p class="text-yellow text-2xl font-cozy text-center">{item}</p>
+        ))}
+      </div>
+
+      <p class="text-yellow text-center max-w-3xl mx-auto text-lg">
+        {pageData.projectstext}
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .prose p {
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+</style>

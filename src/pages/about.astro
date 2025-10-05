@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroImage from 'assets/images/hero_sub.png';
+
+const pageData = {
+  title: 'Cozy Cocktail Collective',
+  description: 'Eventy, Wesela, Cocktail Scenarios, Doradztwo Barowe, Warsztaty koktajlowe, Integracja Online',
+  herobackground: 'src/assets/images/hero_main.png',
+  weddings: {
+    title: 'Wesela',
+    subtitle: 'Koktajl bar na weselu',
+    content: 'Od wielu lat zdobywamy doświadczenie w najlepszych koktajlbarach w Polsce i na świecie. Teraz przeniesiemy najwyższą jakość w organizacji i obsłudze baru na Twoje wesele. Przygotujemy autorskie menu koktajlowe spójne ze stylistyką Twojego przyjęcia, zaaranżujemy bar, dobierzemy wina i przygotujemy selekcję alkoholi premium. Mówiąc krótko, zadbamy o to, aby każdy toast był niezapomniany. Skontaktuj się z nami, opowiedz nam o swoim wymarzonym weselu, a my przygotujemy dla Ciebie spersonalizowaną ofertę.'
+  },
+  scenarios: {
+    title: 'Cocktail Scenarios',
+    content: 'Nasze scenariusze to skrupulatnie stworzone menu, które w spójnym stylu łączą ze sobą koktajle wytrawne i słodkie, długie i krótkie, intensywne i orzeźwiające. Dzięki temu każdy z gości Twojego wydarzenia będzie mógł odnaleźć coś dla siebie. Każdy z koktajli bazujemy na najwyższej jakości alkoholach, a wszystkie składniki przygotowujemy sami według naszych receptur w duchu zero waste. Jeżeli nie znalazłeś scenariusza dla siebie - nie martw się - z wielką przyjemnością napiszemy spersonalizowane menu dostosowane do Twoich potrzeb.'
+  },
+  events: {
+    title: 'Eventy',
+    image: '/img/dsc01232.jpg',
+    content: 'Nie ma dwóch takich samych eventów, dlatego nie wierzymy w szablonowe rozwiązania. Niezależnie od tego czy organizujesz dużą, firmową imprezę czy też potrzebujesz kameralnej usługi barowej na prywatne spotkanie - chętnie Ci pomożemy. Wybierz jeden z oferowanych przez nas autorskich scenariuszy lub napisz do nas, i pozwól nam zaprojektować bar na Twoje wydarzenie.'
+  },
+  workshops: {
+    title: 'Warsztaty i Szkolenia',
+    left: 'Warsztaty koktajlowe online to aktywność, dzięki której współpracownicy nie tylko się zintegrują, ale również będą mieli szansę zdobyć nowe umiejętności. Nauczymy obsługi podstawowego sprzętu barmańskiego, opowiemy o historii wybranych koktajli i podpowiemy jak przygotować składniki i półprodukty. Dzięki nowo zdobytym umiejętnościom będziecie mogli raczyć siebie i innych pysznymi koktajlami w domowym zaciszu.',
+    right: 'Nasze warsztaty poprzedzone są ankietą, która pozwoli nam na dopasowowanie szkolenia do indywidualnych preferencji uczestników. W dniu warsztatów, każdy z uczestników otrzymuje box niezbędny do interaktywnego udziału w warsztatach. Zawartość pudełka różni się w zależności od wybranego i dostosowanego do preferencji klienta scenariusza. Każde spotkanie jest wyjątkowe, a przygotowanie go jest jak szycie na miarę. Dlatego też, do każdego wydarzenia podchodzimy indywidualnie i ustalamy jego koszt na podstawie potrzeb i preferencji klienta.'
+  },
+  consultancy: {
+    title: 'Doradztwo Barowe',
+    image: '/img/stock.png',
+    left: 'Tworzenie barów od podszewki to dla nas największa przyjemność. Pomożemy Ci zarówno jeżeli masz już funkcjonujący bar i chcesz usprawnić działalność tej części restauracji, a także jeśli potrzebujesz doradztwa przy całkowicie nowym projekcie. Napiszemy autorskie menu koktajlowe pasujące do filozofii Twojego konceptu, wyselekcjonujemy wina, piwa, alkohole mocne oraz napoje bezalkoholowe. Rozpiszemy receptury, wyliczymy marżę i odpowiednio wycenimy wszystkie pozycje w menu.',
+    right: 'Zajmiemy się rekrutacją i wyszkoleniem Twojego zespołu. Skonsultujemy projekt techniczny baru, tak aby zapewnić możliwie najlepszą ergonomię pracy i sprawny serwis. Podzielimy się siatką kontaktów, od najbardziej opłacalnych dostawców po najlepszych fotografów koktajlowych. Wybierz jeden z oferowanych przez nas autorskich scenariuszy lub napisz do nas, i pozwól nam zaprojektować bar na Twoje wydarzenie.',
+    bar: 'Skontaktuj się z nami i opowiedz o swoich potrzebach - my zajmiemy się resztą.'
+  }
+};
+---
+
+<Layout title={pageData.title} description={pageData.description} bgColor="green">
+  <!-- Hero Section -->
+  <section class="hero relative h-96 lg:h-screen flex items-center justify-center overflow-hidden">
+    <Image src={heroImage} alt="Hero background"
+    class="absolute inset-0 w-full h-full object-cover" />
+    <div class="relative z-10 text-center text-white">
+      <h1 class="text-5xl lg:text-7xl font-cozy">Co Robimy</h1>
+    </div>
+  </section>
+
+  <!-- Weddings Section -->
+  <section class="weddings py-20 bg-yellow">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-green text-4xl lg:text-5xl font-cozy mb-4">
+          {pageData.weddings.title}
+        </h2>
+        <h3 class="text-green text-2xl font-semibold mb-8">
+          {pageData.weddings.subtitle}
+        </h3>
+        <p class="text-green text-lg leading-relaxed">
+          {pageData.weddings.content}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scenarios Section -->
+  <section class="scenarios py-20 bg-green">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-yellow text-4xl lg:text-5xl font-cozy mb-8">
+          {pageData.scenarios.title}
+        </h2>
+        <p class="text-yellow text-lg leading-relaxed">
+          {pageData.scenarios.content}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section class="events py-20 bg-yellow">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <img 
+            src={pageData.events.image} 
+            alt="Events"
+            class="w-full h-96 object-cover rounded-lg shadow-lg"
+          />
+        </div>
+        <div>
+          <h2 class="text-green text-4xl lg:text-5xl font-cozy mb-8">
+            {pageData.events.title}
+          </h2>
+          <p class="text-green text-lg leading-relaxed">
+            {pageData.events.content}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workshops Section -->
+  <section class="workshops py-20 bg-red">
+    <div class="container">
+      <h2 class="text-yellow text-4xl lg:text-5xl font-cozy mb-12 text-center">
+        {pageData.workshops.title}
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="text-yellow text-lg leading-relaxed">
+            {pageData.workshops.left}
+          </p>
+        </div>
+        <div>
+          <p class="text-yellow text-lg leading-relaxed">
+            {pageData.workshops.right}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultancy Section -->
+  <section class="consultancy py-20 bg-green">
+    <div class="container">
+      <h2 class="text-yellow text-4xl lg:text-5xl font-cozy mb-12 text-center">
+        {pageData.consultancy.title}
+      </h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div>
+          <p class="text-yellow text-lg leading-relaxed mb-8">
+            {pageData.consultancy.left}
+          </p>
+        </div>
+        <div>
+          <p class="text-yellow text-lg leading-relaxed">
+            {pageData.consultancy.right}
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <p class="text-yellow text-2xl font-cozy">
+          {pageData.consultancy.bar}
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+</style>

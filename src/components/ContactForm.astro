@@ -1,0 +1,311 @@
+---
+// Contact form component for Netlify Forms
+---
+
+<div class="form-wrapper">
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="relative overflow-hidden"
+      id="contactForm"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="bot-field" />
+  
+      <div id="formContent">
+        <div class="mb-6">
+          <input
+            type="email"
+            name="email"
+            placeholder="Adres e-mail"
+            class="input w-full"
+            required
+            id="emailInput"
+          />
+          <span class="control__error hidden" id="emailError">
+            Wpisz poprawny adres email
+          </span>
+        </div>
+  
+        <div class="mb-6">
+          <input
+            type="text"
+            name="name"
+            placeholder="Imię i nazwisko"
+            class="input w-full"
+            required
+            id="nameInput"
+          />
+          <span class="control__error hidden" id="nameError">
+            Wpisz swoje imię
+          </span>
+        </div>
+  
+        <div class="mb-6">
+          <input
+            type="text"
+            name="city"
+            placeholder="Miasto"
+            class="input w-full"
+          />
+        </div>
+  
+        <div class="mb-6">
+          <input
+            type="text"
+            name="eventType"
+            placeholder="Rodzaj organizowanego eventu"
+            class="input w-full"
+          />
+        </div>
+  
+        <div class="flex items-start mb-6">
+          <input
+            class="styled-checkbox mt-1"
+            name="acceptance"
+            id="acceptance"
+            type="checkbox"
+            required
+          />
+          <label for="acceptance" class="ml-4 text-xs text-yellow cursor-pointer">
+            Potwierdzam, że jestem świadomy, że Cozy Cocktail Collective
+            wykorzystuje moje dane na cele marketingu bezpośredniego.
+          </label>
+        </div>
+  
+        <div class="relative z-10 w-full h-full  hidden translate-y-[100%] opacity-0" id="formStatus">
+          <div class="loading-dots" id="loadingDots">
+            <div class="loading-dots--dot"></div>
+            <div class="loading-dots--dot"></div>
+            <div class="loading-dots--dot"></div>
+          </div>
+        </div>
+  
+        <button
+          type="submit"
+          class="form-button mt-6 w-full"
+          id="submitBtn"
+        >
+          Wyślij zgłoszenie
+        </button>
+      </div>
+  
+      <div id="successMessage" class="hidden">
+        <p class="text-yellow text-center text-2xl font-cozy mb-8">
+          Dziękujemy za wiadomość,<br /> Do usłyszenia!
+        </p>
+        <button
+          type="button"
+          class="form-button mt-6 w-full"
+          id="returnBtn"
+        >
+          Powrót
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  <style>
+    .form-container {
+      background: transparent;
+    }
+  
+    .input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #F5E6D3;
+      color: #F5E6D3;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+  
+    .input::placeholder {
+      color: rgba(245, 230, 211, 0.6);
+    }
+  
+    .input:focus {
+      border-bottom-color: #F5E6D3;
+    }
+  
+    .styled-checkbox {
+      appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid #F5E6D3;
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+  
+    .styled-checkbox:checked {
+      background: #F5E6D3;
+    }
+  
+    .styled-checkbox:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #8B4049;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  
+    .control__error {
+      color: #ff6b6b;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  
+    .form-button {
+      background: #F5E6D3;
+      color: #8B4049;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      border-radius: 4px;
+    }
+  
+    .form-button:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+  
+    .form-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 0;
+    }
+  
+    .loading-dots--dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      background: #F5E6D3;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+  
+    .loading-dots--dot:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+  
+    .loading-dots--dot:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+  
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: scale(0);
+      }
+      40% {
+        transform: scale(1);
+      }
+    }
+  
+    .hidden {
+      display: none !important;
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm') as HTMLFormElement;
+      const formContent = document.getElementById('formContent');
+      const successMessage = document.getElementById('successMessage');
+      const submitBtn = document.getElementById('submitBtn');
+      const returnBtn = document.getElementById('returnBtn');
+      const formStatus = document.getElementById('formStatus');
+      const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+      const nameInput = document.getElementById('nameInput') as HTMLInputElement;
+      const emailError = document.getElementById('emailError');
+      const nameError = document.getElementById('nameError');
+  
+      // Email validation
+      const validateEmail = (email: string): boolean => {
+        return /^[\w.%+-]+@[\w-]+\.[\w]{2,}$/i.test(email);
+      };
+  
+      // Form validation
+      emailInput?.addEventListener('blur', () => {
+        if (emailInput.value && !validateEmail(emailInput.value)) {
+          emailError?.classList.remove('hidden');
+        } else {
+          emailError?.classList.add('hidden');
+        }
+      });
+  
+      nameInput?.addEventListener('blur', () => {
+        if (nameInput.value.length < 1) {
+          nameError?.classList.remove('hidden');
+        } else {
+          nameError?.classList.add('hidden');
+        }
+      });
+  
+      // Form submission
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+  
+        // Validate before submit
+        if (!validateEmail(emailInput.value)) {
+          emailError?.classList.remove('hidden');
+          return;
+        }
+  
+        if (nameInput.value.length < 1) {
+          nameError?.classList.remove('hidden');
+          return;
+        }
+  
+        // Show loading
+        submitBtn?.setAttribute('disabled', 'true');
+        formStatus?.classList.remove('hidden');
+  
+        // Submit form
+        const formData = new FormData(form);
+        
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData as any).toString()
+          });
+  
+          if (response.ok) {
+            // Show success message
+            formContent?.classList.add('hidden');
+            successMessage?.classList.remove('hidden');
+            form.reset();
+          } else {
+            alert('Wystąpił błąd. Spróbuj ponownie.');
+          }
+        } catch (error) {
+          alert('Wystąpił błąd. Spróbuj ponownie.');
+        } finally {
+          submitBtn?.removeAttribute('disabled');
+          formStatus?.classList.add('hidden');
+        }
+      });
+  
+      // Return button
+      returnBtn?.addEventListener('click', () => {
+        formContent?.classList.remove('hidden');
+        successMessage?.classList.add('hidden');
+      });
+    });
+  </script>
